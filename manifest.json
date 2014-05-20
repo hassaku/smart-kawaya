@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+  "name": "Smart Kawaya",
+  "version": "0.1",
+  "permissions": [
+    "https://*/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://*/*"],
+      "js": ["jquery-2.0.2.min.js"]
+    }
+  ],
+  "background": {
+    "page": "background.html"
+  },
+  "browser_action": {
+    "default_icon": "vacant_dark.png"
+  }
+}

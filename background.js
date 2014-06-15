@@ -1,5 +1,4 @@
 const API_URL = "https://api.spark.io/v1/devices/48ff6a065067555031111087/";
-const ACCESS_TOKEN= "f10fbbd51f64f0a7b6e106726d00d4184e94bf5e";
 const INTERVAL = 1000;
 const MOTION = 1000;      // Threshold for IR sensor
 const BRIGHTNESS = 1000;  // Threshold for CDS sensor
@@ -20,7 +19,7 @@ function consoleError(devise, json) {
       type: 'POST',
       url: API_URL + "analogread",
       data: {
-        "access_token": ACCESS_TOKEN,
+        "access_token": localStorage["accessToken"],
         "params"      : sensorType
       },
       success: function(json) {
@@ -55,7 +54,7 @@ chrome.browserAction.onClicked.addListener(
       type: 'POST',
       url: API_URL + "analogwrite",
       data: {
-        "access_token": ACCESS_TOKEN,
+        "access_token": localStorage["accessToken"],
         "params"      : "D0,20"
       },
       success: function(json) {
@@ -73,7 +72,7 @@ chrome.browserAction.onClicked.addListener(
           type: 'POST',
           url: API_URL + "analogwrite",
           data: {
-            "access_token": ACCESS_TOKEN,
+            "access_token": localStorage["accessToken"],
             "params"      : "D0,0"
           },
           success: function(json) {

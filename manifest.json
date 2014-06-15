@@ -3,6 +3,7 @@
   "name": "Smart Kawaya",
   "version": "0.1",
   "permissions": [
+    "storage",
     "https://*/*"
   ],
   "content_scripts": [
@@ -11,6 +12,7 @@
       "js": ["jquery-2.0.2.min.js"]
     }
   ],
+  "options_page": "option.html",
   "background": {
     "page": "background.html"
   },

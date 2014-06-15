@@ -2,6 +2,11 @@ const API_URL = "https://api.spark.io/v1/devices/48ff6a065067555031111087/";
 const ACCESS_TOKEN= "f10fbbd51f64f0a7b6e106726d00d4184e94bf5e";
 const INTERVAL = 1000;
 
+function consoleError(devise, json) {
+  console.error("connection error : " + devise);
+  console.log(json);
+}
+
 (function() {
   var checkIndex = 0;
   var valueTarget = 0;
@@ -33,8 +38,7 @@ const INTERVAL = 1000;
         }
       },
       error: function(json) {
-        console.log("connection error : " + sensorType);
-        console.log(json);
+        consoleError(sensorType, json);
       }
     });
     checkIndex = (checkIndex + 1) % 2;
@@ -74,14 +78,12 @@ chrome.browserAction.onClicked.addListener(
             var value = json.return_value;
           },
           error: function(json) {
-            console.log("connection error : buzzer");
-            console.log(json);
+            consoleError("buzzer", json);
           }
         });
       },
       error: function(json) {
-        console.log("connection error : buzzer");
-        console.log(json);
+        consoleError("buzzer", json);
       }
     });
   }

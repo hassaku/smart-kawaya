@@ -57,14 +57,14 @@ chrome.browserAction.onClicked.addListener(
         "params"      : "D0,20"
       },
       success: function(json) {
-        var wait_time =  function(time) {
+        var sleep =  function(time) {
           return (function() {
             var dfd = $.Deferred()
             setTimeout(function() { dfd.resolve(); }, time);
             return dfd.promise()
           })
         }
-        wait_time(INTERVAL);
+        sleep(INTERVAL);
 
         // off
         $.ajax({

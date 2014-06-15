@@ -1,3 +1,7 @@
+const API_URL = "https://api.spark.io/v1/devices/48ff6a065067555031111087/";
+const ACCESS_TOKEN= "f10fbbd51f64f0a7b6e106726d00d4184e94bf5e";
+const INTERVAL = 1000;
+
 (function() {
   var checkIndex = 0;
   var valueTarget = 0;
@@ -7,9 +11,9 @@
     var sensorType = (checkIndex == 0) ? "A0" : "A1";
     $.ajax({
       type: 'POST',
-      url: "https://api.spark.io/v1/devices/48ff6a065067555031111087/analogread",
+      url: API_URL + "analogread",
       data: {
-        "access_token": "f10fbbd51f64f0a7b6e106726d00d4184e94bf5e",
+        "access_token": ACCESS_TOKEN,
         "params"      : sensorType
       },
       success: function(json) {
@@ -34,7 +38,7 @@
       }
     });
     checkIndex = (checkIndex + 1) % 2;
-  }, 1000);
+  }, INTERVAL);
 }).call(this);
 
 chrome.browserAction.onClicked.addListener(
@@ -43,9 +47,9 @@ chrome.browserAction.onClicked.addListener(
     // on
     $.ajax({
       type: 'POST',
-      url: "https://api.spark.io/v1/devices/48ff6a065067555031111087/analogwrite",
+      url: API_URL + "analogwrite",
       data: {
-        "access_token": "f10fbbd51f64f0a7b6e106726d00d4184e94bf5e",
+        "access_token": ACCESS_TOKEN,
         "params"      : "D0,20"
       },
       success: function(json) {
@@ -56,14 +60,14 @@ chrome.browserAction.onClicked.addListener(
             return dfd.promise()
           })
         }
-        wait_time(1000);
+        wait_time(INTERVAL);
 
         // off
         $.ajax({
           type: 'POST',
-          url: "https://api.spark.io/v1/devices/48ff6a065067555031111087/analogwrite",
+          url: API_URL + "analogwrite",
           data: {
-            "access_token": "f10fbbd51f64f0a7b6e106726d00d4184e94bf5e",
+            "access_token": ACCESS_TOKEN,
             "params"      : "D0,0"
           },
           success: function(json) {

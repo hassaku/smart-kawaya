@@ -1,6 +1,8 @@
 const API_URL = "https://api.spark.io/v1/devices/48ff6a065067555031111087/";
 const ACCESS_TOKEN= "f10fbbd51f64f0a7b6e106726d00d4184e94bf5e";
 const INTERVAL = 1000;
+const MOTION = 1000;      // Threshold for IR sensor
+const BRIGHTNESS = 1000;  // Threshold for CDS sensor
 
 function consoleError(devise, json) {
   console.error("connection error : " + devise);
@@ -9,8 +11,8 @@ function consoleError(devise, json) {
 
 (function() {
   var checkIndex = 0;
-  var valueTarget = 0;
-  var valueRoom = 0;
+  var valueMotion = 0;
+  var valueBrightness = 0;
 
   setInterval(function() {
     var sensorType = (checkIndex == 0) ? "A0" : "A1";
@@ -26,13 +28,13 @@ function consoleError(devise, json) {
 
         // IR sensor
         if(sensorType == "A0") {
-          valueTarget = value;
+          valueMotion = value;
           //chrome.browserAction.setBadgeText({ text: String(value) });
         // CDS sensor
         } else {
-          valueRoom = value;
-          var usage = (valueTarget > 1000) ? "use" : "vacant";
-          var light = (valueRoom > 1000) ? "light" : "dark";
+          valueBrightness = value;
+          var usage = (valueMotion > MOTION) ? "use" : "vacant";
+          var light = (valueBrightness > BRIGHTNESS) ? "light" : "dark";
           image = usage + "_" + light + ".png";
           chrome.browserAction.setIcon({ path: image });
         }

@@ -9,7 +9,7 @@
       type: 'POST',
       url: "https://api.spark.io/v1/devices/48ff6a065067555031111087/analogread",
       data: {
-        "access_token": "c4962c1e9f738e41bd7e41d5e80f4768a3a94708",
+        "access_token": "f10fbbd51f64f0a7b6e106726d00d4184e94bf5e",
         "params"      : sensorType
       },
       success: function(json) {
@@ -45,7 +45,7 @@ chrome.browserAction.onClicked.addListener(
       type: 'POST',
       url: "https://api.spark.io/v1/devices/48ff6a065067555031111087/analogwrite",
       data: {
-        "access_token": "c4962c1e9f738e41bd7e41d5e80f4768a3a94708",
+        "access_token": "f10fbbd51f64f0a7b6e106726d00d4184e94bf5e",
         "params"      : "D0,20"
       },
       success: function(json) {
@@ -63,7 +63,7 @@ chrome.browserAction.onClicked.addListener(
           type: 'POST',
           url: "https://api.spark.io/v1/devices/48ff6a065067555031111087/analogwrite",
           data: {
-            "access_token": "c4962c1e9f738e41bd7e41d5e80f4768a3a94708",
+            "access_token": "f10fbbd51f64f0a7b6e106726d00d4184e94bf5e",
             "params"      : "D0,0"
           },
           success: function(json) {

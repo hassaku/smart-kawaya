@@ -1,5 +1,5 @@
 const API_URL = "https://api.spark.io/v1/devices/48ff6a065067555031111087/";
-const INTERVAL = 1000;
+const INTERVAL = 5000;
 const MOTION = 1000;      // Threshold for IR sensor
 const BRIGHTNESS = 1000;  // Threshold for CDS sensor
 
@@ -75,7 +75,7 @@ chrome.browserAction.onClicked.addListener(
             return dfd.promise()
           })
         }
-        sleep(INTERVAL);
+        sleep(1000);
 
         // off
         $.ajax({

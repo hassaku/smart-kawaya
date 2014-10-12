@@ -6,6 +6,15 @@ const BRIGHTNESS = 1000;  // Threshold for CDS sensor
 function consoleError(devise, json) {
   console.error("connection error : " + devise);
   console.log(json);
+  if(JSON.parse(json.responseText).error == "invalid_grant") {
+    chrome.browserAction.setBadgeText({ text: "Token" });
+  } else {
+    chrome.browserAction.setBadgeText({ text: "Error" });
+  }
+}
+
+function clearError() {
+  chrome.browserAction.setBadgeText({ text: "" });
 }
 
 (function() {
@@ -23,6 +32,7 @@ function consoleError(devise, json) {
         "params"      : sensorType
       },
       success: function(json) {
+        clearError()
         var value = json.return_value;
 
         // IR sensor
@@ -76,6 +86,7 @@ chrome.browserAction.onClicked.addListener(
             "params"      : "D0,0"
           },
           success: function(json) {
+            clearError()
             var value = json.return_value;
           },
           error: function(json) {
